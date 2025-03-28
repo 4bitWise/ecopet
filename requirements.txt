@@ -9,3 +9,4 @@ idna
 multidict
 python-dotenv
 yarl
+openai

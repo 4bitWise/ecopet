@@ -12,6 +12,7 @@ load_dotenv('.conf')
 
 # getting discord bot token
 token = os.getenv("TOKEN")
+openapikey = os.getenv("OpenAI_API_Key")
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 bot.help_command = Help()
