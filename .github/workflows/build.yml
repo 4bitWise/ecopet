@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+
+    steps:
+      - name: Set up ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          python${{ matrix.python-version }} -m pip install --upgrade pip
+          pip --version
+          make setup
+
+      - uses: actions/checkout@v3
+      - name: Remove the venv and __pycache__
+        run: make clean
+
+  features_tests:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: install pytest
+        run: |
+          pip --version
+          pip install -U pytest
+
+      - uses: actions/checkout@v3
+      - name: Run tests with pytest
+        run: |
+          make tests_run
