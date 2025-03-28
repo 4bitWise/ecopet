@@ -17,8 +17,7 @@ class Help(commands.HelpCommand):
         createdEmbed.set_thumbnail(url=f"{ctx.me.display_avatar}")
 
         for cog, commands in mapping.items():#mapping is a dictionnary
-            #exple of signature: <prefix>command_name <arg> --> '!purge n' is a signature
-            filtered = await self.filter_commands(commands, sort=True) #filter the commands the user can't use
+            filtered = await self.filter_commands(commands) #filter the commands the user can't use
             command_signatures = [self.get_command_signature(cmd).split(' ', 1)[0] for cmd in filtered]
         for cmd in range(len(command_signatures)):
             createdEmbed.add_field(name="{}".format(command_signatures[cmd]), value=f"{commands[cmd].help}", inline=False)

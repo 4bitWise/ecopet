@@ -2,6 +2,9 @@
 
 import os
 from config import *
+from commands import action
+from commands import leaderboard
+from commands import level
 from commands import ping
 from events import on_member_join
 from events import on_message
