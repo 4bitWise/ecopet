@@ -8,7 +8,7 @@ from help.help import Help
 from help.helpCog import HelpCog, setup
 
 # loading environment config
-load_dotenv(dotenv_path=".config")
+load_dotenv('.conf')
 
 # getting discord bot token
 token = os.getenv("TOKEN")
