@@ -41,7 +41,7 @@ async def action(ctx, *, action: str):
     user_id = str(ctx.author.id)
     data = load_data()
     
-    if action in ["plant", "planter", "covoiturage", "transport en commun", "recycler"]:
+    if any(x in action for x in ["plant", "planter", "covoiturage", "transport en commun", "recycler"]):
         user_data = data.get(user_id, {
             'xp': 0,
             'level': 1,
